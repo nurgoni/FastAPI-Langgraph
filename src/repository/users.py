@@ -1,3 +1,4 @@
+from uuid import UUID
 from sqlalchemy.orm import Session
 
 from schemas.users import UserCreate
@@ -17,8 +18,12 @@ def create_new_user(user: UserCreate, db: Session):
     db.refresh(user)
     return user
 
-def get_user_with_id(id: int, db: Session):
+def get_user_with_id(id: UUID, db: Session):
     user = db.query(User).filter(User.id == id).first()
+    return user
+
+def get_user_by_email(email: str, db: Session):
+    user = db.query(User).filter(User.email == email).first()
     return user
 
 def get_all_users(db: Session):
