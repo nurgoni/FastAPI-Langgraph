@@ -1,3 +1,4 @@
+from uuid import UUID
 from pydantic import BaseModel, EmailStr, Field
 
 
@@ -6,7 +7,7 @@ class UserCreate(BaseModel):
     password: str = Field(..., min_length=4)
 
 class ShowUser(BaseModel):
-    id: int
+    id: UUID
     email: EmailStr
     is_active: bool
 
